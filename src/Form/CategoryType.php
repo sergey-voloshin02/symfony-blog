@@ -15,7 +15,7 @@ class CategoryType extends AbstractType
         $builder
             ->add('name', TextType::class, ['label' => 'Name'])
         ;
-    }
+    } 
 
     public function configureOptions(OptionsResolver $resolver): void
     {

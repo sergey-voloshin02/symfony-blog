@@ -22,9 +22,8 @@ class ArticleType extends AbstractType
             ->add('author', TextType::class, ['label' => 'Author'])
             ->add('title', TextType::class, ['label' => 'Title'])
             ->add('content', TextareaType::class, ['label' => 'Content'])
-            ->add('category', EntityType::class, [
-                'class' => Category::class,
-                'label' => 'Category']);
+            ->add('category', EntityType::class, ['class' => Category::class, 'label' => 'Category'])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

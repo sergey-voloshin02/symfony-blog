@@ -41,12 +41,11 @@ class CategoryController extends AbstractController
     #[Route('/category/single/{category}', name: 'single_category')]
     public function single(Category $category, ArticleRepository $articleRepository, PersistenceManagerRegistry $doctrine): Response
     {
-        $em = $doctrine->getManager();
-        $categories = $em->getRepository(Category::class)->findAll();
+        $em = $doctrine->getManager(); 
 
         return $this->render('category/single.html.twig', [
             'category' => $category,
-            'categories' => $categories,
+            'categories' => $em->getRepository(Category::class)->findAll(),
             'articles' => $articleRepository->findBy(['category' => $category])
         ]);
     }

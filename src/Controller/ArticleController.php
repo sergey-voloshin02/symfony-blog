@@ -18,36 +18,16 @@ class ArticleController extends AbstractController
     {
         $em = $doctrine->getManager();
 
-        $articles = $em->getRepository(Article::class)->findAll();
-        $categories = $em->getRepository(Category::class)->findAll();
-
         return $this->render('article/index.html.twig', [
             'controller_name' => 'ArticleController',
-            'articles' => $articles,
-            'categories' => $categories
-        ]);
-    }
-
-    #[Route('/main', name: 'main')]
-    public function main(PersistenceManagerRegistry $doctrine): Response
-    {
-        $em = $doctrine->getManager();
-
-        $articles = $em->getRepository(Article::class)->findAll();
-        $categories = $em->getRepository(Category::class)->findAll();
-
-        return $this->render('article/main.html.twig', [
-            'controller_name' => 'ArticleController',
-            'articles' => $articles,
-            'categories' => $categories
+            'articles' => $em->getRepository(Article::class)->findAll(),
+            'categories' => $em->getRepository(Category::class)->findAll()
         ]);
     }
 
     #[Route('/article/single/{article}', name: 'single_article')]
     public function single(Article $article, PersistenceManagerRegistry $doctrine)
     {
-//        $em = $doctrine->getManager();
-
         return $this->render('article/single.html.twig', [
             'article' => $article,
         ]);
@@ -73,9 +53,6 @@ class ArticleController extends AbstractController
 
             return $this->redirectToRoute('article');
         }
-//        elseif(!$form->isValid()){
-//            return
-//        }
 
         return $this->render('article/form.html.twig', [
             'form' => $form->createView()

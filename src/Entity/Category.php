@@ -38,10 +38,4 @@ class Category
     {
         return $this->getName();
     }
-
-    public function getAllCategories(PersistenceManagerRegistry $doctrine): static
-    {
-        $em = $doctrine->getManager();
-        return $em->getRepository(Category::class)->findAll();
-    }
 }
